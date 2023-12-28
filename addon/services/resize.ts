@@ -1,4 +1,4 @@
-import { computed, getWithDefault, set } from '@ember/object';
+import { computed, get, set } from '@ember/object';
 import { alias, readOnly } from '@ember/object/computed';
 import Evented from '@ember/object/evented';
 import { cancel, debounce } from '@ember/runloop';
@@ -56,7 +56,7 @@ class ResizeService extends Service.extend(Evented, {
   }
 
   public _setDefaults() {
-    const defaults = getWithDefault(this, 'resizeServiceDefaults', {} as any);
+    const defaults = get(this, 'resizeServiceDefaults') as any || {};
 
     Object.keys(defaults).map((key: keyof ResizeDefaults) => {
       const classifiedKey = classify(key);
