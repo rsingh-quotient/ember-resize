@@ -1,4 +1,5 @@
 import { computed, getWithDefault, set } from '@ember/object';
+import { alias, readOnly } from '@ember/object/computed';
 import Evented from '@ember/object/evented';
 import { cancel, debounce } from '@ember/runloop';
 import Service from '@ember/service';
@@ -17,11 +18,11 @@ export interface ResizeDefaults {
 }
 
 class ResizeService extends Service.extend(Evented, {
-  debounceTimeout: computed.oneWay('defaultDebounceTimeout'),
-  heightSensitive: computed.oneWay('defaultHeightSensitive'),
-  screenHeight: computed.readOnly('_oldHeight'),
-  screenWidth: computed.readOnly('_oldWidth'),
-  widthSensitive: computed.oneWay('defaultWidthSensitive'),
+  debounceTimeout: alias('defaultDebounceTimeout'),
+  heightSensitive: alias('defaultHeightSensitive'),
+  screenHeight: readOnly('_oldHeight'),
+  screenWidth: readOnly('_oldWidth'),
+  widthSensitive: alias('defaultWidthSensitive'),
 }) {
   public _oldWidth = window.innerWidth;
   public _oldHeight = window.innerHeight;
