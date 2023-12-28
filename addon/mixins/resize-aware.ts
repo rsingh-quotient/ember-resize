@@ -1,4 +1,5 @@
 import { readOnly } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import Mixin from '@ember/object/mixin';
 import ResizeService from 'dummy/services/resize';
 const { floor } = Math;
@@ -7,7 +8,7 @@ const { floor } = Math;
 const ResizeAwareMixin = Mixin.create({
   resizeDebouncedEventsEnabled: true,
   resizeEventsEnabled: true,
-
+  resizeService: service('resize'),
   screenHeight: readOnly('resizeService.screenHeight'),
   screenWidth: readOnly('resizeService.screenWidth'),
 
